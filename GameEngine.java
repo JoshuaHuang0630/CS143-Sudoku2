@@ -1,6 +1,10 @@
-public class GameEngine {
-	public static void main(String[] args) {
-		SudokuBoard game = new SudokuBoard("Sudoku1/data/data1.sdk");
+public class GameEngine
+{
+	public static void main(String[] args)
+	{
+		SudokuBoard game = new SudokuBoard("src/data1.sdk");
+		System.out.println(game.isValid());
+		System.out.println(game.isSolved());
 		System.out.println(game);
 	}
 }
