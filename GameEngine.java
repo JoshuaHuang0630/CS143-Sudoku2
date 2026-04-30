@@ -2,7 +2,7 @@ public class GameEngine
 {
 	public static void main(String[] args)
 	{
-		SudokuBoard game = new SudokuBoard("data1.sdk");
+		SudokuBoard game = new SudokuBoard("boards/valid-complete.sdk");
 		System.out.println("Is valid: " + game.isValid());
 		System.out.println("Is solved: " + game.isSolved());
 		System.out.println(game);

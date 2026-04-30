@@ -157,6 +157,10 @@ public class SudokuBoard
 
 		for (char key : boardMap.keySet())
 		{
+			if (key == '-')
+			{
+				return false;
+			}
 			if (boardMap.get(key) != 9)
 			{
 				return false;
