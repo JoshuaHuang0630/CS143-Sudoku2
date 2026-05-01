@@ -49,8 +49,10 @@ public class SudokuBoard
 		{
 			for (int c = 0; c < board[r].length; c++)
 			{
+				// Each character on the board must be a number, or a dash
 				if (board[r][c] < '0' || board[r][c] > '9')
 				{
+					// The only acceptable value other than a number is a dash
 					if (board[r][c] != '-')
 					{
 						return false;
@@ -63,8 +65,10 @@ public class SudokuBoard
 
 	private boolean checkRowDuplicate()
 	{
+		// Row major iteration
 		for (int r = 0; r < board.length; r++)
 		{
+			// Uses a set to store values that we have seen
 			Set <Character> rowValue = new HashSet <>();
 			for (int c = 0; c < board[r].length; c++)
 			{
@@ -80,8 +84,10 @@ public class SudokuBoard
 
 	private boolean checkColumnDuplicate()
 	{
+		// Column major iteration
 		for (int c = 0; c < board.length; c++)
 		{
+			// Uses a set to store values that we have seen
 			Set <Character> colValue = new HashSet <>();
 			for (int r = 0; r < board[c].length; r++)
 			{
@@ -113,10 +119,15 @@ public class SudokuBoard
 
 	private boolean checkMiniSquareDuplicate()
 	{
+		// Iterates through every mini square
 		for (int spot = 1; spot <= 9; spot++)
 		{
 			char[][] miniSquare = miniSquare(spot);
+
+			// Uses a set to store values that we have seen
 			Set <Character> gridValue = new HashSet <>();
+
+			// Row major iteration for a mini square rather than the entire board
 			for (int r = 0; r < miniSquare.length; r++)
 			{
 				for (int c = 0; c < miniSquare[r].length; c++)
@@ -146,17 +157,21 @@ public class SudokuBoard
 			{
 				if (!boardMap.containsKey(board[r][c]))
 				{
+					// Create new key in boardMap after seeing a number for the first time
 					boardMap.put(board[r][c], 1);
 				}
 				else
 				{
+					// Increment the value if the number already exists on the board
 					boardMap.put(board[r][c], boardMap.get(board[r][c]) + 1);
 				}
 			}
 		}
 
+		// Check whether every value in the boardMap is 9, meaning 9 occurrences of each number
 		for (char key : boardMap.keySet())
 		{
+			// A dash is a legal character in boardMap but shouldn't ever exist in a solved board
 			if (key == '-')
 			{
 				return false;
